@@ -12,86 +12,36 @@ import {
   incrementByAmount,
   fetchSatForSankeyChart,
   incrementIfOdd,
-  selectData,
-  fetchCount,
-  setNewDataToSankey
+  selectSankey,
+  fetchSankey,
+  updateSankeyData
 } from './sankeySlice';
+
 import styles from './Sankey.module.css';
 
 HighchartsSankey(Highcharts);
+
 export function Sankey() {
-
-  const data = useSelector(selectData);
-
+  const data = useSelector(selectSankey);
   const dispatch = useDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   const incrementValue = Number(incrementAmount) || 0;
 
-  useEffect(() => {
-    //debugger;
-    dispatch(setNewDataToSankey(data));
-    //setNewDataToSankey(data);
-  },[data]) 
-
-  const fetchData = useCallback(() => {
-    // fetch(`http://localhost:3000/data/${jsonFileName}.json`)
-    //   .then(reponse => {
-    //     reponse.json().then(resp => {
-    //       if (resp.data) {
-    //         setData(resp.data);
-    //       }
-    //     })
-    //   })
-    //moved code to call API to SankeySlice to call API's through redux
-    dispatch(fetchSatForSankeyChart());
-  }, []);
-
-
   const addDataToSankeySeries = (formData) => {
 
-    //for weight to convert to numeric from string
-    const toNumericPairs = input => {
-      const entries = Object.values(input);
-      entries[2] = parseFloat(entries[2]);
-      return entries;
-    }
+     formData.weight =parseFloat(formData.weight);
 
-    // const getSeriesData = (ser, formData) => {
-      
-    //   let newArray = Object.assign([], ser[0].data);
-    //   newArray.push(toNumericPairs(formData));
-    //   ser[0].data = newArray;
-
-    //   // var newObj = {
-    //   //   ...ser,
-    //   //   newObj.legendPosition = 'right' //property you want to add in props object
-    //   // };
-
-    //   return ser;
-    // }
-    dispatch(setNewDataToSankey( { formData, action: 'newData'}));
-    //props cant be seyt from here
-    // dispatch(setNewDataToSankey({
-    //   ...data,
-    //   series: getSeriesData(data.series, formData)
-    // }));
-    // setData(
-    //   {
-    //     ...data,
-    //     series: getSeriesData(data.series, formData)
-    //   }
-    // )
+     dispatch(updateSankeyData({ formData, action: 'newData'}));
   };
 
   useEffect(() => {
-    fetchData();
+    dispatch(fetchSatForSankeyChart());
   }, []);
-
 
   return (
     <div>
-      <div className={styles.row}>
+         <div className={styles.row}>      
         <HighchartsReact
           highcharts={Highcharts}
           options={data}

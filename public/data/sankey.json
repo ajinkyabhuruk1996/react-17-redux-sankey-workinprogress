@@ -1,0 +1,61 @@
+{
+  "data":
+  {
+    "title": {
+      "text": ""
+    },
+    "series": [
+      {
+        "keys": [
+          "from",
+          "to",
+          "weight"
+        ],
+        "data": [
+          [
+            "Delivery Center 1",
+            "Bills",
+            10
+          ],
+          [
+            "Bills",
+            "Electricity",
+            1
+          ],
+          [
+            "Bills",
+            "Water",
+            2
+          ],
+          [
+            "Bills",
+            "Salary",
+            3
+          ],
+          [
+            "Delivery Center 1",
+            "Payments",
+            8
+          ],
+          [
+            "Payments",
+            "Staff Payments",
+            1
+          ],
+          [
+            "Payments",
+            "Partner Payments",
+            4
+          ],
+          [
+            "Payments",
+            "Vendor Payments",
+            1
+          ]          
+        ],
+        "type": "sankey",
+        "name": "Income Vs Expense"
+      }
+    ]
+  }
+}

@@ -8,7 +8,7 @@ import {
   import Menu2 from "../routes/menu2";
   import Menu3 from "../routes/menu3";
   import SankeyChart from "../routes/sankeyChart";
-  
+  import LanguageHandler from "../components/languageHandler";
   //https://reactrouter.com/docs/en/v6/getting-started/tutorial
   export default function MainContent() {
       return (
@@ -26,7 +26,17 @@ import {
                   <Link to="/menu2">Menu Item 2</Link>
                   <Link to="/menu3">Menu Item 3</Link>
                   <Link to="/sankeyexample">Report-sankey</Link>
+                  <div 
+                    style= {{
+                      width: "300px",
+                      float: "right"
+                    }}                  
+                  >
+                   <span>Please select Langaue</span> &nbsp;
+                   <LanguageHandler />
+                </div>
               </nav>
+              
           <Routes>
             <Route path="/" element={<Menu1 />} />
             <Route path="menu1" element={<Menu1 />} />

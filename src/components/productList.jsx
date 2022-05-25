@@ -14,7 +14,7 @@ export default function ProductList(props) {
                 }              
             })
         })        
-    });
+    },[]);
      
     return (
         <main style={{ padding: "1rem 0" }}>
